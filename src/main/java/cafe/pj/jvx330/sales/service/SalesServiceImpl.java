@@ -46,7 +46,6 @@ public class SalesServiceImpl implements SalesService{
 	
 	private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 	
-	
 	public SalesServiceImpl(SalesDao salesDao) {
 		this.sd = salesDao;
 	}

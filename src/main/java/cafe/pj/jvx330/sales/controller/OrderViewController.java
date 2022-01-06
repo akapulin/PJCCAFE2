@@ -39,7 +39,6 @@ public class OrderViewController extends SalesController {
    public String indexView(HttpSession session) {
       session.setAttribute("contentName", "주문현황");
 
-      ModelAndView mav = new ModelAndView();
       return "index";
    }
    

@@ -57,6 +57,7 @@ public class UserLogController extends UserController {
 				errMsg.put("idErr", "존재하지 않은 아이디입니다.");
 			}
 		}
+	
 		
 		if (validator.isEmpty(employeeCommand.getPasswd())) { // 비밀번호 미입력
 			errMsg.put("pwErr", "비밀번호를 입력해주세요.");

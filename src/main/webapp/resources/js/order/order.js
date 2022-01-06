@@ -205,7 +205,7 @@ $(document).on("click", ".mList", function(e) {
 	}
 	
 	//처음 추가할 때 
-	if ($('.addMenuList').length == 0) { checktuple = true; }
+	//if ($('.addMenuList').length == 0) { checktuple = true; }
 	
 	//중복메뉴이면 
 	for (let i = 0; i < $('.addMenuList').length; i++) {
@@ -326,6 +326,8 @@ $('.orderListUpBtn').on('click', function(e) {
 	}
 
 })
+
+// -------------------TO BE CONTINUE--------------------------
 
 /* 총 수량 계산하기 */
 function calcTotalNum() {
@@ -502,11 +504,8 @@ function sendUserInfo(custId, custName, custPhone, custBirth, custPoint) {
 		url: "saveUserPoint",
 		type: "post",
 		data: JSON.stringify(json),
-		contentType: "application/json; charset=UTF-8",
-		//async:false	,
-		success: function(data) {
-
-		}
+		contentType: "application/json; charset=UTF-8"
+	
 	})
 }
 
@@ -585,6 +584,7 @@ $('.usePointBtn').on('click', function(e) {
 	}
 	else {
 		alert('5,000포인트 이상 보유시, 1,000포인트 이상 100포인트 단위로 사용가능')
+		return;
 	}
 
 	close();
@@ -665,7 +665,6 @@ $('.funcOrderBtn').on('click', function(e) {
 		"customer.birth": birth,
 		"customer.point": point,
 		"place": place,
-
 	}
 
 	let json2;
@@ -675,7 +674,7 @@ $('.funcOrderBtn').on('click', function(e) {
 
 		let str3 = "nowOrder[" + i + "].menuId";
 		let str4 = Number($('.addMenuList').eq(i).find($('.mlMenuId')).val());
-
+		//[nowOrder[0].quantity]:quantity
 		json2 = { [str1]: str2, [str3]: str4 }
 		Object.assign(json1, json2);
 
@@ -686,13 +685,14 @@ $('.funcOrderBtn').on('click', function(e) {
 		url: "saveOrder",
 		type: "post",
 		data: json1,
-		//data: JSON.stringify(json),
+		//data: JSON.stringify(json1),
 		//data: $('#json').serialize(),
 		dataType: 'json',
 		//contentType: "application/json; charset=UTF-8"	,
 		success: function(data) {
 			console.log('hi')
-			callCompOrder()
+			//callCompOrder()
+			$('#goCompOrder').submit();
 		}
 	})
 
@@ -717,7 +717,7 @@ $('.bestMenuItem').on('click', function(e) {
 		success: function(data) {
 			//console.log(data[0].id);
 			//기존 메뉴 초기화
-
+			console.log(data);
 			for (let i = 0; i < data.length; i++) {
 				$('.menuItemsWrap').find('ul').append(
 					"<li class='mList mBestMenu'><a href='#'>" +

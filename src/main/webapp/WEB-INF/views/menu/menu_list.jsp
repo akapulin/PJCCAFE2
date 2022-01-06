@@ -84,14 +84,14 @@
 			}
 			$("#addMenu").click(function(e) {
 				e.preventDefault();
-				popupUpdateMenu("popAddMenu", 500, 300);
+				popupUpdateMenu("popAddMenu", 500, 450);
 			})
 			$("#updateMenu").click(function(e) {
 				e.preventDefault();
 				if ($("input[name=choiceItem]:checked").val() == null) {
 					alert("먼저 메뉴를 선택해주세요!");
 				} else {
-					popupUpdateMenu("popUpdateMenu", 600, 300);
+					popupUpdateMenu("popUpdateMenu", 600, 450);
 				}
 			})
 			$("#removeMenu").click(function(e) {

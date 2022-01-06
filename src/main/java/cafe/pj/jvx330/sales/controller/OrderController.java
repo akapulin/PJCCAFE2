@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import cafe.pj.jvx330.menu.domain.Menu;
@@ -63,7 +64,7 @@ public class OrderController extends SalesController {
 	@Resource(name = "userService")
 	private UserService us;
 
-	List<Product> order = new ArrayList<>();
+	
 
 	/**
 	 * 주문 화면 불러오기 - 직원 직책 - 오늘 날짜 - 모든 메뉴
@@ -101,6 +102,7 @@ public class OrderController extends SalesController {
 		return mav;
 	}
 
+	List<Product> order = new ArrayList<>();
 	/* 1. 좌측에 상품명 / 수량 / 단가 / 금액 업데이트 */
 
 	@PostMapping("/orderMenuList")
@@ -180,17 +182,17 @@ public class OrderController extends SalesController {
 		return mav;
 	}
 
-	Customer customerForPoint;
+	private Customer customerForPoint;
 
 	// 고객 선택 시 포인트 사용하기 위해서 고객 정보 미리 보관하기
 	@PostMapping("saveUserPoint")
 	@ResponseBody
-	public HashMap<String, Object> saveUserPoint(@RequestBody HashMap<String, Object> map) {
-
+	public void saveUserPoint(@RequestBody HashMap<String, Object> map) {
+		
 		HashMap<String, Object> save = map;
 		customerForPoint = (Customer) us.findUserById(Long.parseLong(map.get("userId").toString()));
 
-		return save;
+		//return;
 	}
 
 	/**

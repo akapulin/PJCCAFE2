@@ -56,8 +56,8 @@ CREATE TABLE OrderRecord (
    regDate 			TIMESTAMP			NOT NULL   	DEFAULT CURRENT_TIMESTAMP,			-- 결제날짜 
    CONSTRAINT		Menu_menuId_FK 	FOREIGN KEY(menuId) REFERENCES Menu(id)
 );
-
--- 비회원등록
+SELECT menuID, SUM(quantity) AS total_quantity FROM OrderRecord GROUP BY menuId;
+-- 비회원등
 INSERT INTO Customer(name,phone,birth,point) VALUES('비회원','','',0);
 INSERT INTO Customer(name,phone,birth,point) VALUES('정원식','01012341234','19960630',10000);
 INSERT INTO Customer(name,phone,birth,point) VALUES('정투식','01012341234','19900403',0);
